@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--
+       context:指定generator运行环境
+       targetRuntime
+           -MyBatis3:复杂版的mapper
+           -MyBatis3Simple:简单版的mapper
+    -->
+    <context id="testTables" targetRuntime="MyBatis3Simple">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://10.50.132.42:3306/rsbu_tfs_financial_test" userId="csde_dsm2"
+                        password="qaz123*UHB">
+        </jdbcConnection>
+        <!--<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                          connectionURL="jdbc:sqlserver://10.50.64.10;databaseName=rsbu_csm" userId="sa"
+                          password="qwe123!@#">
+          </jdbcConnection>-->
+          <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+              NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="com.trinasolar.rsbu.mdm.maintenance.model.response"
+                            targetProject=".\src">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="com.trinasolar.rsbu.mdm.maintenance.mapper.xml"
+                         targetProject=".\src">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <!--XMLMAPPER-->
+        <javaClientGenerator type="ANNOTATEDMAPPER"
+                             targetPackage="com.trinasolar.rsbu.mdm.maintenance.mapper"
+                             targetProject=".\src">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!-- 指定数据库表 -->
+        <table schema="" tableName="t_user_area_relation"></table>
+    </context>
+</generatorConfiguration>
